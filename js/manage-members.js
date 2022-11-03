@@ -263,3 +263,4 @@ function showToast(msg,msgType='warning'){
 $('#frm-member-detail').on('hidden.bs.modal',()=>{
     getAllMembers();
 });
+
