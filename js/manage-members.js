@@ -1,5 +1,6 @@
+const API_END_POINT ='http://34.93.227.66:8080/lms/api';
 const pageSize =5;
-let page =3;
+let page =1;
 getAllMembers();
 function getAllMembers(query=`${$('#txt-search').val()}`){
     /* Step 1 --->Initiate a XMLHTTP request*/ //this is called XHR 
@@ -47,7 +48,7 @@ function getAllMembers(query=`${$('#txt-search').val()}`){
 
     /* step-3 -->Open the requst */
 
-    http.open('GET',`http://localhost:8080/lms/api/members?size=${pageSize}&page=${page}&q=${query}`,true);  /* here true means assynchronous */
+    http.open('GET',`${API_END_POINT}/members?size=${pageSize}&page=${page}&q=${query}`,true);  /* here true means assynchronous */
 
     /* step-4 -->set additionl information for the request */
 
@@ -197,7 +198,7 @@ function saveMember(){
             }
         });
 
-        xhr.open('POST','http://localhost:8080/lms/api/members',true);
+        xhr.open('POST',`${API_END_POINT}/members`,true);
         xhr.setRequestHeader('Content-Type','application/json');
 
         const member ={
