@@ -41,7 +41,7 @@ jobs:
       - name: Clean up old stuff
         run: >
           gcloud compute ssh --zone="asia-south1-a" dep-9-vm 
-          --command="sudo rm -rf "opt/apache/apache-tomcat-10.1.1/webapps/lms/css 
+          --command="sudo rm -rf opt/apache/apache-tomcat-10.1.1/webapps/lms/css 
           opt/apache/apache-tomcat-10.1.1/webapps/lms/page 
           opt/apache/apache-tomcat-10.1.1/webapps/lms/js 
           opt/apache/apache-tomcat-10.1.1/webapps/lms/index.html
