@@ -42,15 +42,15 @@ jobs:
         run: >
           gcloud compute ssh --zone="asia-south1-a" dep-9-vm 
           --command="sudo rm -rf "opt/apache/apache-tomcat-10.1.1/webapps/lms/css 
-          --command="sudo rm -rf "opt/apache/apache-tomcat-10.1.1/webapps/lms/page 
-          --command="sudo rm -rf "opt/apache/apache-tomcat-10.1.1/webapps/lms/js 
-          --command="sudo rm -rf "opt/apache/apache-tomcat-10.1.1/webapps/lms/index.html
+          opt/apache/apache-tomcat-10.1.1/webapps/lms/page 
+          opt/apache/apache-tomcat-10.1.1/webapps/lms/js 
+          opt/apache/apache-tomcat-10.1.1/webapps/lms/index.html
           "
 
       - name: Extraction the Zip
         run: >
           gcloud compute ssh --zone="asia-south1-a" dep-9-vm 
-          --command="sudo unzip opt/apache/apache-tomcat-10.1.1/webapps/lms/dist.zip /opt/apache/apache-tomcat-10.1.1/webapps/lms"
+          --command="sudo unzip opt/apache/apache-tomcat-10.1.1/webapps/lms/dist.zip -d /opt/apache/apache-tomcat-10.1.1/webapps/lms"
         
       - name: Cleaning the leftover
         run: >
