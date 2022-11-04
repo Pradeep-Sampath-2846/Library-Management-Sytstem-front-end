@@ -1,5 +1,8 @@
 {
     "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///home/pradeep/Documents/DEP-9-CORE/phase-4/Library%20Managment%20System/front-nd/.github/deploy.yml"
+        "https://json.schemastore.org/github-workflow.json": [
+            "file:///home/pradeep/Documents/DEP-9-CORE/phase-4/Library%20Managment%20System/front-nd/.github/deploy.yml",
+            "file:///home/pradeep/Documents/DEP-9-CORE/phase-4/Library%20Managment%20System/front-nd/js/.github/workflows/deploy.yml"
+        ]
     }
 }
