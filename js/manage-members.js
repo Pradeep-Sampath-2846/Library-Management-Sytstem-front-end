@@ -18,7 +18,6 @@ function getAllMembers(query=`${$('#txt-search').val()}`){
             if(http.status===200){  //check the status code of the response
                 const totalMembers =+http.getResponseHeader('X-Total-Count');  //getting header data for paginated results
                 initpagination(totalMembers);
-
                 const members = JSON.parse(http.responseText);
                 $('#loader').hide();
                 if(members.length===0){
