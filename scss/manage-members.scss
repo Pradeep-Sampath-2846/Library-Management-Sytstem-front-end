@@ -1,9 +1,4 @@
 
-h3{
-    align-self: center;
-    align-items: flex-end
-}
-
 #tbl-members{
     th:first-child,
     tbody td:first-child{
@@ -217,6 +212,67 @@ h3{
       100% {
         opacity: 0;
       }
+    }
+  }
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+  font-size: 0.9rem;
+  background-color: rgba(180, 180, 180);
+  color: rgb(25, 25, 25);
+
+  @media all and (max-width: 1200px){
+      margin-top: 10px;
+      position: relative;
+  }
+}
+
+header{
+  // background-color: gray;
+  a{
+    display: inline-block;
+    
+    img{
+      // background-color: #0d6efd;
+      width: 100px;
+      height: 100px;
+      // border: 2px solid #ccb894;
+      border-radius: 10px;
+    }
+  }
+
+  h3{
+    // background-color: aquamarine;
+
+    ion-icon{
+      font-size: 3rem;
+      color: #213644;
+    }
+  }
+  
+  #sm-icons{
+    // background-color: red;
+
+    ion-icon{
+      &:hover{
+
+        background-color: #c6ab7c;
+        margin-right: 10px;
+      }
+
+      font-size: 2rem;
+      margin-right:5px ;
+      border-radius: 2px;
+      color: #213644;
+
+
     }
   }
 }

@@ -5,12 +5,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
 #navigation {
   display: flex;
   height: fit-content;
@@ -81,11 +75,11 @@ header {
 }
 #navigation a:first-child:hover::after {
   top: 0;
-  background-color: rgb(16, 222, 126);
+  background-color: #213644;
   text-align: center;
   border-radius: 10px;
   pointer-events: none;
-  color: aliceblue;
+  color: #c6ab7c;
 }
 
 footer {
@@ -105,6 +99,30 @@ footer {
     margin-top: 10px;
     position: relative;
   }
+}
+
+header {
+  justify-content: space-between;
+}
+header h1 {
+  align-self: center;
+}
+header #logo img {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
+header #sm-icons {
+  align-self: center;
+}
+header #sm-icons ion-icon {
+  font-size: 2rem;
+  margin-right: 5px;
+  border-radius: 5px;
+  color: #213644;
+}
+header #sm-icons ion-icon:hover {
+  background-color: #c6ab7c;
 }
 
 /*# sourceMappingURL=style.css.map */

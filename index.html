@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./img/logo-2.png" type="image/x-icon">
     <script defer type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script defer nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script  defer src="./js/index.js"></script>
@@ -20,8 +21,16 @@
 
 </head>
 <body class="container-lg">
-    <header class="d-flex justify-content-center mt-4">
-        <h1>Welcome to Library Management System</h1>
+    <header class="d-flex justify-content-center ">
+        <div class="d-flex align-items-center" id="logo"><img src="img/Logo.png" alt=""></div>
+        <h1 class="ms-5">Welcome to Library Management System</h1>
+        <div id="sm-icons" class="d-flex justify-content-end ms-5">
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+            <ion-icon name="logo-linkedin"></ion-icon>
+
+        </div>
     </header>
     <main>
         <nav id="navigation" class="row mt-4">
@@ -31,5 +40,8 @@
             <div class="col-lg-3"><a href=""><ion-icon name="arrow-undo-circle-outline"></ion-icon><span>Handle Returns</span></a></div>
         </nav>
     </main>
+    <footer class="position-fixed bottom=0">
+        Library Management System - v0.1.0 Copyright &copy; 2022 DEP9. All Rights Reserved.
+    </footer>
 </body>
 </html>

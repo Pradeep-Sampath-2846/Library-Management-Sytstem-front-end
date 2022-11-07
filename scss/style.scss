@@ -4,12 +4,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-header{
-    display: flex;
-    justify-content: center;
-    text-align: center;
 
-}
 
 #navigation{
     display: flex;
@@ -89,11 +84,12 @@ header{
 
         &:first-child:hover::after{
             top: 0;
-            background-color: rgb(16, 222, 126);
+            background-color: #213644;
             text-align: center;
             border-radius: 10px;
             pointer-events: none;
-            color: aliceblue;
+            color: #c6ab7c;
+            
         }
     }
 }
@@ -113,5 +109,44 @@ footer{
         margin-top: 10px;
         position: relative;
     }
+}
+
+header{
+    justify-content: space-between;
+    h1{
+        align-self: center;
+        // background-color: #22aeaa;
+    
+    }
+    // background-color: #358fca;
+    #logo{
+        // background-color: rebeccapurple;
+        img{
+
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+        }
+    }
+
+    #sm-icons{
+        align-self: center;
+    
+        ion-icon{
+          &:hover{
+    
+            background-color: #c6ab7c;
+
+
+          }
+    
+          font-size: 2rem;
+          margin-right:5px ;
+          border-radius: 5px;
+          color: #213644;
+    
+    
+        }
+      }
 }
 
