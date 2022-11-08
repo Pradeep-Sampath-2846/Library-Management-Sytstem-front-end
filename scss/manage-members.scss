@@ -29,6 +29,10 @@
     tbody tr:focus{
       background-color: rgb(207, 207, 207);
     }
+
+    tbody tr{
+      cursor: pointer;
+    }
 }
 
 

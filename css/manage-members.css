@@ -26,6 +26,9 @@
 #tbl-members tbody tr:focus {
   background-color: rgb(207, 207, 207);
 }
+#tbl-members tbody tr {
+  cursor: pointer;
+}
 
 #loader {
   display: flex;
