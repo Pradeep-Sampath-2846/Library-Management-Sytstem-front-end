@@ -1,0 +1,156 @@
+header a {
+  display: inline-block;
+}
+header a img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+header h3 ion-icon {
+  font-size: 3rem;
+  color: #213644;
+}
+header #sm-icons ion-icon {
+  font-size: 2rem;
+  margin-right: 5px;
+  border-radius: 2px;
+  color: #213644;
+}
+header #sm-icons ion-icon:hover {
+  background-color: #c6ab7c;
+  margin-right: 10px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+  font-size: 0.9rem;
+  background-color: rgb(180, 180, 180);
+  color: rgb(25, 25, 25);
+}
+@media all and (max-width: 1200px) {
+  footer {
+    margin-top: 10px;
+    position: relative;
+  }
+}
+
+#loader {
+  display: flex;
+  justify-content: center;
+}
+#loader .lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+#loader .lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #c0a87c;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+#loader .lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+#loader .lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+#loader .lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+#loader .lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+#tbl-books th:first-child,
+#tbl-books tbody td:first-child {
+  min-width: 30px;
+  max-width: 60px;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+#tbl-books th:nth-child(2),
+#tbl-books tbody td:nth-child(2) {
+  width: 300px;
+}
+#tbl-books th:last-child,
+#tbl-books tbody td:last-child {
+  width: 250px;
+  text-align: center;
+}
+#tbl-books.empty tfoot {
+  display: table-footer-group;
+}
+#tbl-books tfoot {
+  display: none;
+}
+#tbl-books tbody tr:focus {
+  background-color: rgb(207, 207, 207);
+}
+#tbl-books tbody tr {
+  cursor: pointer;
+}
+
+#frm-book-detail .btn ion-icon {
+  font-size: 1.3em;
+  vertical-align: sub;
+  color: rgb(44, 19, 19);
+}
+#frm-book-detail.new #btn-edit, #frm-book-detail.new #edit-buttons-wrapper {
+  display: none;
+}
+#frm-book-detail.new #btn-save {
+  display: inline !important;
+}
+#frm-book-detail.edit #btn-edit, #frm-book-detail.edit #btn-save {
+  display: none;
+}
+#frm-book-detail.edit #edit-buttons-wrapper {
+  display: block !important;
+}
+#frm-book-detail.edit #edit-buttons-wrapper ion-icon {
+  padding-right: 5px;
+}
+
+/*# sourceMappingURL=manage-books.css.map */

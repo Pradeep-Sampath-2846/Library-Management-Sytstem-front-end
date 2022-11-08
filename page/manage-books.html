@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books</title>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    
+    <script defer type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script defer nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/manage-books.css">
+    <script defer src="../js/manage-books.js"></script>
+</head>
+<body class="container-xl">
+    <header class="row d-flex align-items-center">
+        <a class="col-2" href="../index.html"><img src="../img/Logo.png" alt=""></a>
+            <h3 class="text-sm-center p-3 col-6 d-flex justify-content-around"><ion-icon name="book-outline"></ion-icon> Manage Books</h3>
+            <div id="sm-icons" class="col-4 d-flex justify-content-end">
+                <ion-icon name="logo-facebook"></ion-icon>
+                <ion-icon name="logo-instagram"></ion-icon>
+                <ion-icon name="logo-twitter"></ion-icon>
+                <ion-icon name="logo-linkedin"></ion-icon>
+
+            </div>
+    </header>
+    <main>
+        <div class="d-flex justify-content-between ">
+            <div class="align-self-end px-1">🔎Search Books</div>
+            <button id="btn-new-book" class="btn btn-primary">+ New Book</button>
+        </div>
+        <input id="txt-search" type="text" class="form-control mt-2" placeholder="ISBN | Title | Author">
+    
+            <table id="tbl-books" class="table">
+                <thead class="table-group-divider">
+                    <tr>
+                        <th>ISBN</th>
+                        <th>TITLE</th>
+                        <th>AUTHOR</th>
+                        <th>Qty.</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <!-- <tr>
+                        <td>1234567896545</td>
+                        <td>Engineering Mathematics</td>
+                        <td>H.K.Dass</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1234567896545</td>
+                        <td>Programming Fundamentals</td>
+                        <td>A.K.Devid</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>1234567896545</td>
+                        <td>Programming with OOP</td>
+                        <td>Walker</td>
+                        <td>5</td>
+                    </tr> -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center ">
+                            No books to display here, add a new book first
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div id="loader">
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <nav id="pagination" class="d-flex justify-content-center" >
+                <ul class="pagination">
+                  <!-- <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li> -->
+                </ul>
+            </nav>
+    </main>
+    <div class="toast-container bottom-0 end-0 me-3 mb-2">
+        <div id="toast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+            <div class="toast-body">
+                Failed to reach the server.Try again later..
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+     <!-- Modal -->
+     <div class="modal fade new" id="frm-book-detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Book Details</h1>
+            </div>
+            <div class="modal-body">
+                <form >
+                    <div class="mb-3">
+                        <label for="txt-isbn" class="form-label">Book ISBN</label>
+                        <input type="text" class="form-control validationTooltip01" placeholder="1234567891234" id="txt-isbn">
+                        <div class="invalid-feedback ">
+                            Invalid Title!
+                        </div>
+
+                    </div> 
+                    <div class="mb-3">
+                        <label for="txt-title" class="form-label">Book Title</label>
+                        <input type="text" class="form-control " id="txt-title" placeholder="Eg. Programming Fundamentals">
+                        <div class="invalid-feedback ">
+                            Invalid Title!
+                        </div>
+                    </div>   
+                    <div class="mb-3">
+                        <label for="txt-author" class="form-label">Book Author</label>
+                        <input type="text" class="form-control" id="txt-author" placeholder="Eg. Kenneth Leroy Busbee">
+                        <div class="invalid-feedback ">
+                            Invalid Author!
+                        </div>
+                    </div>   
+                    <div class="mb-3">
+                        <label for="txt-copies" class="form-label">Copies</label>
+                        <input type="text" class="form-control" id="txt-copies" placeholder="Eg. 8">
+                        <div class="invalid-feedback ">
+                            Invalid Quantity!
+                        </div>
+                    </div> 
+                    <button class="d-none"></button> 
+                </form>                                                                        
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+            <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <ion-icon name="close-outline"></ion-icon>
+                Close
+            </button>
+            <button id="btn-edit" type="button" class="btn btn-primary">
+                <ion-icon name="create-outline"></ion-icon>
+                Edit Details
+            </button>
+            <button id="btn-save" type="button" class="btn btn-primary d-none">
+                <ion-icon name="create-sharp"></ion-icon>
+                Save
+            </button>
+            <div id="edit-buttons-wrapper" class="d-none">
+                <button id="btn-delete" type="button" class="btn btn-danger">
+                    <ion-icon name="trash-bin-sharp"></ion-icon>
+                    Delete
+                </button>
+                <button id="btn-update" type="button" class="btn btn-success">
+                    <ion-icon name="save-sharp"></ion-icon>
+                    Update
+                </button>                
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="overlay" class="d-flex justify-content-center align-items-center flex-column d-none">
+        <div id="overlay-loader">
+            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+        <h2 class="mt-5">Please Wait</h2>
+    </div>
+    <footer >
+        Library Management System - v0.1.0 ©Copyright &copy; 2022 DEP9. All Rights Reserved.
+    </footer>
+    
+
+
+</body>
+</html>
