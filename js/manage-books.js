@@ -151,3 +151,178 @@ $("#btn-new-book").click(()=> {
 
         frmBookDetails.show();
 });
+
+$("#frm-book-detail form").submit((eventData)=> {
+    eventData.preventDefault();
+    $("#btn-save").click();
+});
+
+$("#btn-save").click(async ()=> {
+
+    let isbn = $("#txt-isbn").val();
+    const title = $("#txt-title").val();
+    const author = $("#txt-author").val();
+    const copies = $("#txt-copies").val();
+    let validated = true;
+
+    $("#txt-isbn, #txt-title, #txt-author ,#txt-copies").removeClass('is-invalid');
+
+    if (!/^\d{13}$/.test(isbn)){
+        $("#txt-isbn").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+
+    if (!/^[A-Za-z0-9 -]+$/.test(title)){
+        $("#txt-title").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+
+    if (!/^[A-Za-z0-9 -]+$/.test(author)){
+        $("#txt-author").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+    if (!/^\d+$/.test(copies)){
+        $("#txt-copies").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+
+    if (!validated) return;
+
+    try{
+        $("#overlay").removeClass("d-none");
+        console.log('working');
+        ({isbn}=(await saveBook(isbn,title,author,copies)));
+       
+        
+        $("#overlay").addClass("d-none");
+        showToast(`Book has been saved successfully with the ISBN: ${isbn}`, 'success');
+        $("#txt-isbn, #txt-title, #txt-author ,#txt-copies").val("");
+        $("#txt-isbn").focus();
+    }catch(e){
+        console.log(e);
+        $("#overlay").addClass("d-none");
+        showToast("Failed to save the Book, try again", 'error');
+        $("#txt-isbn").focus();
+    }
+    
+});
+
+async function saveBook(isbn,title,author,copies){
+        const response =await fetch(`${API_END_POINT}/books`,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                isbn,title, author, copies
+            })
+        });
+        console.log(response.status);
+        if(response.status==201){
+            showToast('Book has been succussfully saved','success');
+            return await response.json();
+        }else{
+            throw new Error(response.status);
+        }
+
+
+}
+
+$("#frm-book-detail").on('hidden.bs.modal', ()=> {
+    getBooks();
+});
+
+$('#tbl-books tbody').click(({target})=> {
+    if (!target) return;
+    let rowElm = target.closest('tr');
+
+    getMemeberDetails($(rowElm.cells[0]).text());
+});
+
+async function getMemeberDetails(isbn){
+    try{
+        const response = await fetch(`${API_END_POINT}/books/${isbn}`)
+        if (response.ok){
+            const book = await response.json(); 
+            
+            const frmBookDetails = new 
+            bootstrap.Modal(document.getElementById('frm-book-detail'));
+
+            $("#frm-book-detail")
+                .removeClass('new').removeClass('edit');
+
+            $("#txt-isbn").attr('disabled', 'true').val(book.isbn);
+            $("#txt-title").attr('disabled', 'true').val(book.title);
+            $("#txt-author").attr('disabled', 'true').val(book.author);
+            $("#txt-copies").attr('disabled', 'true').val(book.copies);
+
+            frmBookDetails.show();
+        }else{
+            throw new Error(response.status);
+        }
+    }catch(error){
+        showToast('Failed to fetch the Book details');
+    }
+}
+
+$("#btn-edit").click(()=> {
+    $("#frm-book-detail").addClass('edit');
+    $("#txt-isbn, #txt-title, #txt-author ,#txt-copies").attr('disabled', false);
+});
+
+
+$("#btn-update").click(async ()=> {
+
+    const isbn = $("#txt-isbn").val();
+    const title = $("#txt-title").val();
+    const author = $("#txt-author").val();
+    const copies = $("#txt-copies").val();
+    let validated = true;
+
+    $("#txt-isbn, #txt-title, #txt-author ,#txt-copies").removeClass('is-invalid');
+
+    if (!/^\d{13}$/.test(isbn)){
+        $("#txt-isbn").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+
+    if (!/^[A-Za-z0-9 -]+$/.test(title)){
+        $("#txt-title").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+
+    if (!/^[A-Za-z0-9 -]+$/.test(author)){
+        $("#txt-author").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+    if (!/^\d+$/.test(copies)){
+        $("#txt-copies").addClass('is-invalid').select().focus();
+        validated = false;
+    }
+
+    if (!validated) return;
+
+
+    $("#overlay").removeClass('d-none');
+    try{
+        const response = await fetch(`${API_END_POINT}/books/${isbn}`, 
+            {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    isbn,title,author,copies
+                })
+            });
+        if (response.status === 204){
+            showToast('Book has been updated successfully', 'success');
+        }else{
+            throw new Error(response.status);
+        }
+    }catch(error){
+        showToast('Failed to update the book, try again!');
+    }finally{
+        $("#overlay").addClass('d-none');
+    }
+});
